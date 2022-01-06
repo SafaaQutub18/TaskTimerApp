@@ -33,7 +33,7 @@ class CategoryActivity : AppCompatActivity() {
             iconRv.layoutManager = LinearLayoutManager(this@CategoryActivity, LinearLayoutManager.HORIZONTAL, false)
 
             // category Adapter setting
-            categoryAdapter = CategoryAdapter() // (this)
+            categoryAdapter = CategoryAdapter(this@CategoryActivity)
             categoryRv.layoutManager = GridLayoutManager(this@CategoryActivity,2)
 
         }

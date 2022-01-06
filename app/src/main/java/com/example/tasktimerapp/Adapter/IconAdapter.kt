@@ -20,9 +20,7 @@ class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<
         R.drawable.shopping_cart,
         R.drawable.suitcase)
 
-    class IconViewHolder(val binding: IconRecyclerviewBinding):RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class IconViewHolder(val binding: IconRecyclerviewBinding):RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IconViewHolder {
         return IconViewHolder(
