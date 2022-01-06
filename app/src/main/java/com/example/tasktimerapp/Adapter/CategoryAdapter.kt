@@ -1,5 +1,6 @@
 package com.example.tasktimerapp.Adapter
 
+
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,19 +11,22 @@ import com.example.tasktimerapp.database.Category
 import com.example.tasktimerapp.databinding.CategoryRecyclerviewBinding
 
 class CategoryAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-    class CategoryViewHolder(val binding: CategoryRecyclerviewBinding):RecyclerView.ViewHolder(binding.root)
+    class CategoryViewHolder(val binding: CategoryRecyclerviewBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     private var counterBackground = 0
     private var backgroundList: List<Int> =
-        listOf(R.drawable.light_blue_s,
+        listOf(
+            R.drawable.light_blue_s,
             R.drawable.pink_s,
             R.drawable.purple_s,
-            R.drawable.dark_blue_s)
+            R.drawable.dark_blue_s
+        )
 
-    private var categoryList: List<Category> =  emptyList()
+    private var categoryList: List<Category> = emptyList()
 
-    fun setcaregoryList(notesList: List<Category>) {
-        this.categoryList = notesList
+    fun setCategoryList(userCategories: List<Category>) {
+        this.categoryList = userCategories
         notifyDataSetChanged()
     }
 
@@ -37,7 +41,7 @@ class CategoryAdapter(private val activity: CategoryActivity): RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        if(counterBackground >= categoryList.size)
+        if (counterBackground >= categoryList.size)
             counterBackground = 0
 
         val currentCategory = categoryList[position]

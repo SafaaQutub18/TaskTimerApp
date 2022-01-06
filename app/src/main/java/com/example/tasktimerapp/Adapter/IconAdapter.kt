@@ -1,11 +1,11 @@
 package com.example.tasktimerapp.Adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimerapp.Activity.CategoryActivity
 import com.example.tasktimerapp.R
+import com.example.tasktimerapp.database.Category
 import com.example.tasktimerapp.databinding.IconRecyclerviewBinding
 
 class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<IconAdapter.IconViewHolder>() {
@@ -46,4 +46,9 @@ class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<
     override fun getItemCount(): Int {
         return icons.size
     }
+
+//    fun displayCategories(userCategories: List<Category>) {
+//        this.categories = userCategories
+//        notifyDataSetChanged()
+//    }
 }
