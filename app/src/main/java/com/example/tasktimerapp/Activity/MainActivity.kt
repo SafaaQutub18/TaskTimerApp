@@ -1,5 +1,6 @@
 package com.example.tasktimerapp.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        binding.startBtn.setOnClickListener {
+            intent = Intent(applicationContext, CategoryActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

@@ -36,7 +36,9 @@ class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<
         val icon = icons[position]
 
         holder.binding.apply {
-            addSectionIcons.setOnClickListener {
+            iconIv.setImageResource(icon)
+
+            mainLayout.setOnClickListener {
                activity.showAddAlert(icon)
             }
         }

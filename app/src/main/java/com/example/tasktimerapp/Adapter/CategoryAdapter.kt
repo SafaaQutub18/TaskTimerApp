@@ -48,7 +48,7 @@ class CategoryAdapter(private val activity: CategoryActivity): RecyclerView.Adap
 
         holder.binding.apply {
             //set background of item
-            backgLayout.setBackgroundColor(backgroundList[counterBackground])
+            backgLayout.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
 
             iconIV.setImageResource(currentCategory.categoryImage)

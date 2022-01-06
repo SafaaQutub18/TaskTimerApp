@@ -34,11 +34,12 @@ class CategoryActivity : AppCompatActivity() {
 
             // icon Adapter setting
             iconAdapter = IconAdapter(this@CategoryActivity) // (this)
-            //iconRv.adapter = iconAdapter()
+            iconRv.adapter = iconAdapter
             iconRv.layoutManager = LinearLayoutManager(this@CategoryActivity, LinearLayoutManager.HORIZONTAL, false)
 
             // category Adapter setting
             categoryAdapter = CategoryAdapter(this@CategoryActivity)
+            categoryRv.adapter = categoryAdapter
             categoryRv.layoutManager = GridLayoutManager(this@CategoryActivity,2)
 
         }
@@ -53,7 +54,7 @@ class CategoryActivity : AppCompatActivity() {
 
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
         dialog.setContentView(R.layout.add_category_alert)
 
         val addBtn = dialog.findViewById(R.id.addBtn) as Button
@@ -61,6 +62,7 @@ class CategoryActivity : AppCompatActivity() {
 
         addBtn.setOnClickListener {
             viewModel.addCategory(catNameET.text.toString(), image)
+            dialog.dismiss()
         }
         dialog.show()
     }
