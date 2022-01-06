@@ -8,7 +8,10 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/activity_category.xml" value="0.12" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/activity_main.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/activity_tasks.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/add_category_alert.xml" value="0.13333333333333333" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/add_task_alert.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/category_recyclerview.xml" value="0.15601851851851853" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/icon_recyclerview.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/section_recyclerview.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/task_recyclerview.xml" value="0.22" />
       </map>

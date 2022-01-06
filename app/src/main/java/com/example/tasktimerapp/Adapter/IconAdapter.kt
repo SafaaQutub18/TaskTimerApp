@@ -4,11 +4,11 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tasktimerapp.Activity.MainActivity
+import com.example.tasktimerapp.Activity.CategoryActivity
 import com.example.tasktimerapp.R
 import com.example.tasktimerapp.databinding.IconRecyclerviewBinding
 
-class IconAdapter(private val activity: MainActivity): RecyclerView.Adapter<IconAdapter.IconViewHolder>() {
+class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<IconAdapter.IconViewHolder>() {
 
     private val icons: List<Int> =
         listOf(R.drawable.book,
@@ -39,7 +39,7 @@ class IconAdapter(private val activity: MainActivity): RecyclerView.Adapter<Icon
 
         holder.binding.apply {
             addSectionIcons.setOnClickListener {
-               // activity.showAddAlert(icon)
+               activity.showAddAlert(icon)
             }
         }
 
