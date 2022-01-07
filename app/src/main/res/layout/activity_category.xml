@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/sections_backg"
     tools:context=".Activity.CategoryActivity">
-
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height= "match_parent"
         android:orientation="vertical"
-        >
+    >
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -34,7 +37,7 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Choose Icon to Add Category"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="#616060"
             android:textSize="18sp"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"/>
@@ -63,7 +66,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_rv"
             android:layout_width="match_parent"
-            android:layout_height="290dp"
+            android:layout_height="260dp"
             android:background="@drawable/trans_s_with_shadow"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
@@ -85,32 +88,30 @@
             android:textSize="23sp"
             android:textStyle="bold" />
 
-        <RelativeLayout
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/trans_s_with_shadow"
-            >
+            android:layout_height="170dp" />
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barChar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="10dp" />
+    </LinearLayout>
+    </ScrollView>
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_nav"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                app:itemBackground="@color/light_gray"
-                app:itemIconTint="@drawable/selector"
-                app:itemTextColor="@drawable/selector"
-                app:labelVisibilityMode="selected"
-                app:menu="@menu/bottom_navigation" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
 
-        </RelativeLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/light_gray"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="selected"
+        app:menu="@menu/bottom_navigation" />
     </LinearLayout>
 
 </FrameLayout>
