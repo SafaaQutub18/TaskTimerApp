@@ -24,7 +24,7 @@
         android:src="@drawable/add_task_gif" />
 
     <EditText
-        android:id="@+id/noteET"
+        android:id="@+id/titleET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"

@@ -10,6 +10,7 @@
     app:cardElevation="5dp">
 
     <LinearLayout
+        android:id="@+id/taskLL"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/light_blue_r"
@@ -34,7 +35,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/start_ic"
                 tools:ignore="SpeakableTextPresentCheck" />
-            />
+
 
         </FrameLayout>
 
@@ -91,6 +92,7 @@
         >
 
     <TextView
+        android:id="@+id/descriptionTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

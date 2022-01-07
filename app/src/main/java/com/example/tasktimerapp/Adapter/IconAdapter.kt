@@ -49,8 +49,4 @@ class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<
         return icons.size
     }
 
-//    fun displayCategories(userCategories: List<Category>) {
-//        this.categories = userCategories
-//        notifyDataSetChanged()
-//    }
 }

@@ -94,4 +94,5 @@ class CategoryActivity : AppCompatActivity() {
         intent.putExtra("catName", catName)
         startActivity(intent)
     }
+
 }
