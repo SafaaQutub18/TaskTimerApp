@@ -24,7 +24,7 @@ class TasksActivity : AppCompatActivity() {
     private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.ic_task -> {
-                return@OnNavigationItemSelectedListener false
+                return@OnNavigationItemSelectedListener true
             }
             R.id.ic_house-> {
                 val intent = Intent(this@TasksActivity, MainActivity::class.java)
@@ -46,8 +46,9 @@ class TasksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        bottomNavigation.setOnNavigationItemSelectedListener(navigasjonen)
+
+        binding.bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
+        //binding.bottomNav.selectedItemId = R.id.
 
         binding.apply {
             categoryNameTV.text = intent.getStringExtra("catName")

@@ -25,10 +25,11 @@ class CategoryActivity : AppCompatActivity() {
     lateinit var iconAdapter : IconAdapter
     lateinit var categoryAdapter : CategoryAdapter
     lateinit var viewModel: TaskViewModel
+
     private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.ic_section -> {
-                return@OnNavigationItemSelectedListener false
+                return@OnNavigationItemSelectedListener true
             }
             R.id.ic_house -> {
                 val intent1 = Intent(this@CategoryActivity, MainActivity::class.java)
@@ -48,10 +49,10 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
-        bottomNavigation.setOnNavigationItemSelectedListener(navigasjonen)
+
+
+        binding.bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
 
         binding.apply {
 
