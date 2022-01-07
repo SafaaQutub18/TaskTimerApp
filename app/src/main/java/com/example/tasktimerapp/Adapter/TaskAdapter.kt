@@ -39,7 +39,7 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
 
-            if (counterBackground >= tasks.size)
+            if (counterBackground >= backgroundList.size)
                 counterBackground = 0
 
         holder.binding.apply {
