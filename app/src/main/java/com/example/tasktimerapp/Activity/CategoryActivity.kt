@@ -20,6 +20,7 @@ import com.example.tasktimerapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CategoryActivity : AppCompatActivity() {
+    
     lateinit var binding:ActivityCategoryBinding
     lateinit var iconAdapter : IconAdapter
     lateinit var categoryAdapter : CategoryAdapter
@@ -39,7 +40,6 @@ class CategoryActivity : AppCompatActivity() {
                 startActivity(intent2)
                 return@OnNavigationItemSelectedListener true
             }
-
         }
         false
 
@@ -48,6 +48,7 @@ class CategoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
         bottomNavigation.setOnNavigationItemSelectedListener(navigasjonen)

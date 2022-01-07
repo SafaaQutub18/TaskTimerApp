@@ -30,14 +30,14 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="sans-serif-condensed-medium"
             android:text="Choose Icon to Add Category"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="21sp"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold" />
+            android:textSize="18sp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/icon_rv"
@@ -63,13 +63,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_rv"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="290dp"
             android:background="@drawable/trans_s_with_shadow"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:paddingTop="10dp"
-            android:paddingLeft="20dp"
+            android:paddingLeft="35dp"
             android:paddingRight="20dp"
             android:paddingBottom="5dp"
             tools:listitem="@layout/category_recyclerview" />
@@ -92,21 +92,23 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/trans_s_with_shadow"
             >
+
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="10dp" />
+
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_nav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 app:itemBackground="@color/light_gray"
                 app:itemIconTint="@drawable/selector"
                 app:itemTextColor="@drawable/selector"
-                app:menu="@menu/menu"
-                android:layout_alignParentBottom="true"
-                />
+                app:labelVisibilityMode="selected"
+                app:menu="@menu/bottom_navigation" />
 
         </RelativeLayout>
     </LinearLayout>

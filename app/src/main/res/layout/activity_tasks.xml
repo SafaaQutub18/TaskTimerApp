@@ -11,8 +11,13 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/categoryNameTV"
@@ -26,8 +31,8 @@
             android:textSize="34sp" />
 
         <FrameLayout
-            android:layout_width="220dp"
-            android:layout_height="100dp"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
             android:layout_below="@+id/categoryNameTV"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
@@ -38,8 +43,8 @@
             <ProgressBar
                 android:id="@+id/progress_bar"
                 style="@style/Widget.MaterialComponents.CircularProgressIndicator"
-                android:layout_width="250dp"
-                android:layout_height="200dp"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/timer_circle"
@@ -55,7 +60,7 @@
 
                 <pl.droidsonroids.gif.GifImageView
                     android:layout_width="140dp"
-                    android:layout_height="100dp"
+                    android:layout_height="120dp"
                     android:layout_gravity="center"
                     android:src="@drawable/time_wating" />
 
@@ -95,22 +100,26 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tasks_rv"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="320dp"
             android:layout_gravity="center"
-            android:padding="10dp"
             android:background="@drawable/trans_s_with_shadow"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             tools:listitem="@layout/task_recyclerview" />
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_nav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:itemBackground="@color/light_gray"
-            app:itemIconTint="@drawable/selector"
-            app:itemTextColor="@drawable/selector"
-            app:menu="@menu/menu"
-            android:layout_alignParentBottom="true"
-            />
 
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/light_gray"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="selected"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
