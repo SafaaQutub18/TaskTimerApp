@@ -17,18 +17,40 @@ import com.example.tasktimerapp.TaskViewModel
 import com.example.tasktimerapp.database.Category
 import com.example.tasktimerapp.databinding.ActivityCategoryBinding
 import com.example.tasktimerapp.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CategoryActivity : AppCompatActivity() {
     lateinit var binding:ActivityCategoryBinding
     lateinit var iconAdapter : IconAdapter
     lateinit var categoryAdapter : CategoryAdapter
     lateinit var viewModel: TaskViewModel
+    private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.ic_section -> {
+                return@OnNavigationItemSelectedListener false
+            }
+            R.id.ic_house -> {
+                val intent1 = Intent(this@CategoryActivity, MainActivity::class.java)
+                startActivity(intent1)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.ic_task -> {
+                val intent2 = Intent(this@CategoryActivity, TasksActivity::class.java)
+                startActivity(intent2)
+                return@OnNavigationItemSelectedListener true
+            }
 
+        }
+        false
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigation.setOnNavigationItemSelectedListener(navigasjonen)
 
         binding.apply {
 

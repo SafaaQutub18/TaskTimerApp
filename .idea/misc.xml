@@ -3,6 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/drawable/selector.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/activity_category.xml" value="0.2" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/activity_tasks.xml" value="0.2" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/add_category_alert.xml" value="0.2" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/add_task_alert.xml" value="0.2" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/category_recyclerview.xml" value="0.2" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/menu/menu.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/activity_category.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp/app/src/main/res/layout/activity_tasks.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/saad/AndroidStudioProjects/TaskTimerApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
