@@ -2,6 +2,7 @@ package com.example.tasktimerapp.Adapter
 
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -41,13 +42,15 @@ class CategoryAdapter(private val activity: CategoryActivity): RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        if (counterBackground >= categoryList.size)
-            counterBackground = 0
+
 
         val currentCategory = categoryList[position]
 
         holder.binding.apply {
             //set background of item
+            if (counterBackground == backgroundList.size)
+                counterBackground = 0
+            Log.d("vovo", "$counterBackground mmmmmmmmm ${backgroundList.size}")
             backgLayout.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
 

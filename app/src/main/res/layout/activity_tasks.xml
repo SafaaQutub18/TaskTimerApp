@@ -11,9 +11,8 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +27,8 @@
             android:fontFamily="@font/font_bauhaus93"
             android:text="category Name"
             android:textColor="@color/light_gray"
-            android:textSize="34sp" />
+            android:textSize="34sp"
+            />
 
         <FrameLayout
             android:layout_width="190dp"
@@ -76,7 +76,6 @@
                     android:textSize="16sp" />
             </LinearLayout>
 
-
         </FrameLayout>
 
         <TextView
@@ -100,11 +99,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tasks_rv"
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@drawable/trans_s_with_shadow"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="12dp"
             tools:listitem="@layout/task_recyclerview" />
 
     </LinearLayout>
@@ -118,8 +119,11 @@
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:labelVisibilityMode="selected"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_navigation" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/bottom_navigation"
+        tools:layout_editor_absoluteX="0dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

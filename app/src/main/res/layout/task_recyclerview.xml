@@ -6,13 +6,36 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="15dp"
     android:backgroundTint="@color/trans"
-    app:cardCornerRadius="30dp"
+    app:cardCornerRadius="20dp"
     app:cardElevation="5dp">
+    <LinearLayout
+        android:id="@+id/expandableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        android:background="@drawable/expand_backg"
+        android:visibility="visible"
+        >
 
+        <TextView
+            android:id="@+id/descriptionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Here a description."
+            android:layout_gravity="center"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abhaya_libre"
+            />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/taskLL"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:background="@drawable/light_blue_r"
         android:orientation="horizontal">
 
@@ -23,8 +46,8 @@
             android:layout_marginLeft="30dp">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center"
                 android:src="@drawable/clock_circle" />
 
@@ -81,29 +104,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/expandableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical"
-        android:background="@drawable/expand_backg"
-        android:visibility="gone"
-        >
 
-    <TextView
-        android:id="@+id/descriptionTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Here a description."
-        android:layout_gravity="center"
-        android:textSize="23sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/abhaya_libre"
-        />
-    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
