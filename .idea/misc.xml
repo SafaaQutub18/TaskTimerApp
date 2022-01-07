@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/drawable/selector.xml" value="0.21614583333333334" />
-        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/activity_category.xml" value="0.2" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/drawable/timer_circle.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/activity_category.xml" value="0.33" />
         <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/activity_tasks.xml" value="0.2" />
         <entry key="..\:/Users/CompuNET/TaskTimerApp/app/src/main/res/layout/add_category_alert.xml" value="0.2" />
