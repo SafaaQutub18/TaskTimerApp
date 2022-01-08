@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
@@ -12,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasktimerapp.Adapter.TaskAdapter
 import com.example.tasktimerapp.R
 import com.example.tasktimerapp.TaskViewModel
-import com.example.tasktimerapp.databinding.ActivityCategoryBinding
 import com.example.tasktimerapp.databinding.ActivityTasksBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -36,7 +36,6 @@ class TasksActivity : AppCompatActivity() {
                 startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
-
         }
         false
 
@@ -47,11 +46,14 @@ class TasksActivity : AppCompatActivity() {
         binding = ActivityTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
-        //binding.bottomNav.selectedItemId = R.id.
 
         binding.apply {
+            //bottom navigation setting
+            bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
+            bottomNav.menu.findItem(R.id.ic_task).setChecked(true)
+
             categoryNameTV.text = intent.getStringExtra("catName")
+
             //adapter setting
             recyclerAdapter = TaskAdapter(this@TasksActivity)
             tasksRv.adapter = recyclerAdapter
@@ -59,15 +61,14 @@ class TasksActivity : AppCompatActivity() {
 
 
             startBtn.setOnClickListener { showAddTaskAlert() }
+
+
+            val categName = binding.categoryNameTV.text.toString()
+            viewModel = ViewModelProvider(this@TasksActivity).get(TaskViewModel::class.java)
+            viewModel.fetchCategoriesTasks(categName).observe(this@TasksActivity, { tasks ->
+                recyclerAdapter.displayTasks(tasks[0].tasks)
+            })
         }
-
-
-        val categName = binding.categoryNameTV.text.toString()
-        viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
-        viewModel.fetchCategoriesTasks(categName).observe(this, {
-            tasks -> recyclerAdapter.displayTasks(tasks)
-        })
-
     }
 
 

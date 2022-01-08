@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimerapp.Activity.TasksActivity
 import com.example.tasktimerapp.R
+import com.example.tasktimerapp.database.Task
 import com.example.tasktimerapp.database.relations.CategoryTasksRelationship
 import com.example.tasktimerapp.databinding.TaskRecyclerviewBinding
 
@@ -22,7 +23,7 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
         )
 
     //private var tasks: List<Task> = emptyList()  CategoryTasksRelationship
-    private var tasks: List<CategoryTasksRelationship> = emptyList()
+    private var tasks: List<Task> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         return TaskViewHolder(
@@ -46,12 +47,10 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
             taskLL.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
 
-            Log.d("mm", "jjjjjjjjjjjjjjjjjjjj $task")
-            if(task.tasks.size != 0) {
-                itemTaskTV.text = task.tasks[position].taskTitle
-                itemTimerTV.text = "Time ${task.tasks[position].taskTime}"
-                descriptionTV.text = task.tasks[position].taskDescription
-            }
+                itemTaskTV.text = task.taskTitle
+                itemTimerTV.text = "Time ${task.taskTime}"
+                descriptionTV.text = task.taskDescription
+
         }
     }
 
@@ -59,7 +58,7 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
         return tasks.size
     }
 
-    fun displayTasks(userTasks: List<CategoryTasksRelationship>) {
+    fun displayTasks(userTasks: List<Task>) {
         this.tasks = userTasks
         notifyDataSetChanged()
     }

@@ -67,6 +67,7 @@ class CategoryActivity : AppCompatActivity() {
         binding.apply {
         //set bottom nav
             bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
+            bottomNav.menu.findItem(R.id.ic_section).setChecked(true)
 
             //initialize  barChart
             this@CategoryActivity.barChart= barChar
