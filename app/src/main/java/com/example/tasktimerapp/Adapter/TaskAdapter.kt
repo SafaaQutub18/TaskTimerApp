@@ -1,12 +1,12 @@
 package com.example.tasktimerapp.Adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimerapp.Activity.TasksActivity
 import com.example.tasktimerapp.R
-import com.example.tasktimerapp.database.Task
 import com.example.tasktimerapp.database.relations.CategoryTasksRelationship
 import com.example.tasktimerapp.databinding.TaskRecyclerviewBinding
 
@@ -16,10 +16,9 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
     private var counterBackground = 0
     private var backgroundList: List<Int> =
         listOf(
-            R.drawable.light_blue_s,
-            R.drawable.pink_s,
-            R.drawable.purple_s,
-            R.drawable.dark_blue_s
+            R.drawable.light_blue_r,
+            R.drawable.pink_r,
+            R.drawable.purple_r,
         )
 
     //private var tasks: List<Task> = emptyList()  CategoryTasksRelationship
@@ -47,9 +46,12 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
             taskLL.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
 
-            itemTaskTV.text = task.tasks[position].taskTitle
-            itemTimerTV.text = "Time ${task.tasks[position].taskTime}"
-            descriptionTV.text = task.tasks[position].taskDescription
+            Log.d("mm", "jjjjjjjjjjjjjjjjjjjj $task")
+            if(task.tasks.size != 0) {
+                itemTaskTV.text = task.tasks[position].taskTitle
+                itemTimerTV.text = "Time ${task.tasks[position].taskTime}"
+                descriptionTV.text = task.tasks[position].taskDescription
+            }
         }
     }
 

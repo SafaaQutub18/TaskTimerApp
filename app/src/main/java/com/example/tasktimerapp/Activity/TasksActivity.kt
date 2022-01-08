@@ -52,9 +52,12 @@ class TasksActivity : AppCompatActivity() {
 
         binding.apply {
             categoryNameTV.text = intent.getStringExtra("catName")
+            //adapter setting
             recyclerAdapter = TaskAdapter(this@TasksActivity)
             tasksRv.adapter = recyclerAdapter
             tasksRv.layoutManager = LinearLayoutManager(this@TasksActivity)
+
+
             startBtn.setOnClickListener { showAddTaskAlert() }
         }
 
@@ -73,15 +76,18 @@ class TasksActivity : AppCompatActivity() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
-        dialog.setContentView(R.layout.add_category_alert)
+        dialog.setContentView(R.layout.add_task_alert)
 
         val addBtn = dialog.findViewById(R.id.addBtn) as Button
-        val titleET = dialog.findViewById(R.id.titleET) as EditText
-        val descriptionET = dialog.findViewById(R.id.descriptionET) as EditText
+        val titleET = dialog.findViewById(R.id.titleET) as? EditText
+        val descriptionET = dialog.findViewById(R.id.descriptionET) as? EditText
         val categoryN = binding.categoryNameTV.text.toString()
 
         addBtn.setOnClickListener {
-            viewModel.addTask(titleET.text.toString(), descriptionET.text.toString(), "00:00", categoryN)
+            if(titleET?.text.toString() != "" && descriptionET?.text.toString() != "") {
+                viewModel.addTask(titleET!!.text.toString(), descriptionET!!.text.toString(), "00:00", categoryN)
+            }
+            //else : toast message
             dialog.dismiss()
         }
         dialog.show()
