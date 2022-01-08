@@ -17,16 +17,18 @@ import com.example.tasktimerapp.databinding.ActivityTasksBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TasksActivity : AppCompatActivity() {
-    lateinit var binding:ActivityTasksBinding
+    lateinit var binding: ActivityTasksBinding
     lateinit var recyclerAdapter: TaskAdapter
     lateinit var viewModel: TaskViewModel
+
+    var holdTimer = ""
 
     private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.ic_task -> {
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.ic_house-> {
+            R.id.ic_house -> {
                 val intent = Intent(this@TasksActivity, MainActivity::class.java)
                 startActivity(intent)
                 return@OnNavigationItemSelectedListener true
@@ -36,6 +38,7 @@ class TasksActivity : AppCompatActivity() {
                 startActivity(intent)
                 return@OnNavigationItemSelectedListener true
             }
+
         }
         false
 
@@ -46,6 +49,8 @@ class TasksActivity : AppCompatActivity() {
         binding = ActivityTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
+        //binding.bottomNav.selectedItemId = R.id.
 
         binding.apply {
             //bottom navigation setting
@@ -67,7 +72,9 @@ class TasksActivity : AppCompatActivity() {
                 recyclerAdapter.displayTasks(tasks[0].tasks)
             })
         }
+
     }
+
 
     private fun showAddTaskAlert(){
 
@@ -91,6 +98,11 @@ class TasksActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+
+    fun updateTime(id: Int, title: String, description: String, time: String, cateName: String){
+        viewModel.editTask(id, title, description, time, cateName)
     }
 
 }

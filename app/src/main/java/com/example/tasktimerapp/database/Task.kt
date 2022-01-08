@@ -10,6 +10,6 @@ data class Task(
     val taskPK: Int,
     val taskTitle: String,
     val taskDescription: String,
-    val taskTime: String,
+    var taskTime: String,
     val categoryName: String
 )

@@ -78,7 +78,7 @@
 
         </FrameLayout>
 
-        <TextView
+        <Chronometer
             android:id="@+id/bigTimerTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

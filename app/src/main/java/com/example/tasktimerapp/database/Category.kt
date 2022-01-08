@@ -9,5 +9,6 @@ data class Category(
     @PrimaryKey(autoGenerate = false)
     val categoryName: String,
     //val taskPK: Int,
-    val categoryImage: Int
+    val categoryImage: Int,
+    val totalTime: String
 )

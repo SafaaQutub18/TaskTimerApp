@@ -29,9 +29,9 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         return categories
     }
 
-    fun addCategory(name: String, /*id: Int,*/ image: Int) {
+    fun addCategory(name: String, image: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            tasksDao.insertCategory(Category(name, image))
+            tasksDao.insertCategory(Category(name, image, ""))/////////////////////////////////////////
         }
     }
 
@@ -47,11 +47,11 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
 //        }
 //    }
 //
-//    fun editTask(id: Int, title: String, description: String, time: String, cateName: String) {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            tasksDao.updateTask(Task(id, title, description, time, cateName))
-//        }
-//    }
+    fun editTask(id: Int, title: String, description: String, time: String, cateName: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            tasksDao.updateTask(Task(id, title, description, time, cateName))
+        }
+    }
 //
 //    fun deleteCategory(name: String) {
 //        CoroutineScope(Dispatchers.IO).launch {

@@ -3,11 +3,9 @@ package com.example.tasktimerapp.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
@@ -20,15 +18,15 @@ import com.example.tasktimerapp.R
 import com.example.tasktimerapp.TaskViewModel
 import com.example.tasktimerapp.database.Category
 import com.example.tasktimerapp.databinding.ActivityCategoryBinding
+import com.example.tasktimerapp.databinding.ActivityMainBinding
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.XAxis
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class CategoryActivity : AppCompatActivity() {
     
@@ -36,6 +34,7 @@ class CategoryActivity : AppCompatActivity() {
     lateinit var iconAdapter : IconAdapter
     lateinit var categoryAdapter : CategoryAdapter
     lateinit var viewModel: TaskViewModel
+    var holdTimer = ""
 
     private lateinit var barChart: BarChart
 
@@ -66,8 +65,12 @@ class CategoryActivity : AppCompatActivity() {
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        binding.bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
+
         binding.apply {
-        //set bottom nav
+
+            //set bottom nav
             bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
             bottomNav.menu.findItem(R.id.ic_section).setChecked(true)
 
@@ -90,12 +93,12 @@ class CategoryActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         viewModel.fetchCategories().observe(this, {
             categories -> categoryAdapter.setCategoryList(categories)
-
             //fill the array of char
             categoryList = categories
             drawChar()
         })
     }
+
     fun showAddAlert(image : Int){
 
         val dialog = Dialog(this)
@@ -134,7 +137,11 @@ class CategoryActivity : AppCompatActivity() {
 
 
         val barDataSet = BarDataSet(entries, "Category")
-        barDataSet.setColors(Color.parseColor("#BAB0F7"),Color.parseColor("#95DEFF"),Color.parseColor("#FFBED6"), Color.parseColor("#E4A9FC"),Color.parseColor("#42CFF9"),)
+        barDataSet.setColors(
+            Color.parseColor("#BAB0F7"),
+            Color.parseColor("#95DEFF"),
+            Color.parseColor("#FFBED6"), Color.parseColor("#E4A9FC"),
+            Color.parseColor("#42CFF9"),)
         val data = BarData(barDataSet)
         barChart.data = data
         barChart.setBackgroundResource(R.drawable.chart_backg)
