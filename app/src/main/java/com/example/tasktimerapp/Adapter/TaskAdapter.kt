@@ -18,7 +18,7 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
     class TaskViewHolder(val binding: TaskRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    var totalTimee: Long = 0
+
 
     private var counterBackground = 0
     private var backgroundList: List<Int> =
@@ -45,6 +45,7 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasks[position]
+        var runOrNot = 0
 
         if (counterBackground >= backgroundList.size)
             counterBackground = 0
@@ -59,7 +60,7 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
             itemTimerTV.text = "Time ${task.taskTime}"
             descriptionTV.text = task.taskDescription
 
-            var runOrNot = 0
+
 
             taskCV.setOnClickListener {
 
@@ -75,14 +76,17 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
                 startStopBtn.setOnClickListener {
                     if (runOrNot == 0) {
-                        startTimer(true)
+                        activity.startTimer(true)
                         runOrNot = 1
                     } else if (runOrNot == 1) {
-                        startTimer(false)
+                        activity.startTimer(false)
+                        runOrNot = 0
+
 
                         task.taskTime = activity.holdTimer
                         itemTimerTV.text = task.taskTime
                         itemTimerTV.text = "Time ${task.taskTime}"
+                        activity.viewModel.editTask(task.taskPK,task.taskTitle,task.taskDescription,activity.holdTimer,activity.binding.categoryNameTV.text.toString())
 
 //                        val ttt = itemTimerTV.text.toString()
 //                        itemTimerTV.text = activity.binding.bigTimerTV.text.toString()
@@ -92,9 +96,8 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 //                            descriptionTV.text.toString(),
 //                            itemTimerTV.text.toString(),
 //                            activity.binding.categoryNameTV.text.toString())
-
                         notifyDataSetChanged()
-                        runOrNot = 0
+
                     }
                 }
             }
@@ -118,21 +121,5 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
     }
 
 
-    private fun startTimer(run: Boolean) {
-        var totalTime: Long? = null
 
-        if (run == true) {
-            activity.binding.bigTimerTV.base = SystemClock.elapsedRealtime()
-            activity.binding.bigTimerTV.start()
-        } else {
-            activity.binding.bigTimerTV.stop()
-            totalTime = SystemClock.elapsedRealtime() - activity.binding.bigTimerTV.base
-            totalTimee = totalTime + totalTimee
-            activity.holdTimer = activity.binding.bigTimerTV.text.toString()
-            val minutes = totalTimee / 1000 / 60
-            val seconds = totalTimee / 1000 % 60
-
-            Log.d("123", " $minutes minutes and $seconds seconds")
-        }
-    }
 }

@@ -61,7 +61,7 @@ class CategoryAdapter(private val activity: CategoryActivity): RecyclerView.Adap
             catNameTV.text = currentCategory.categoryName
 
             cardLayout.setOnClickListener {
-                activity.goToTasksView(currentCategory.categoryName)
+                activity.goToTasksView(currentCategory)
             }
         }
 

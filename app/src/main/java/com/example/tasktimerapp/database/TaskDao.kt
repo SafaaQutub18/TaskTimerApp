@@ -24,9 +24,9 @@ interface TaskDao {
     fun getCategories(): LiveData<List<Category>>
 
 
-//    @Update
-//    suspend fun updateCategory(category: Category)
-//
+    @Update
+    suspend fun updateCategory(category: Category)
+
     @Update
     suspend fun updateTask(task: Task)
 

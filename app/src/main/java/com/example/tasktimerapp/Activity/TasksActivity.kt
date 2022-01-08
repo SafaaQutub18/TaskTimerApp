@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasktimerapp.Adapter.TaskAdapter
 import com.example.tasktimerapp.R
 import com.example.tasktimerapp.TaskViewModel
+import com.example.tasktimerapp.database.Category
 import com.example.tasktimerapp.databinding.ActivityTasksBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -20,8 +23,9 @@ class TasksActivity : AppCompatActivity() {
     lateinit var binding: ActivityTasksBinding
     lateinit var recyclerAdapter: TaskAdapter
     lateinit var viewModel: TaskViewModel
-
+    lateinit var  holdCategory:Category
     var holdTimer = ""
+    var totalTimee: Long = 0
 
     private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -45,6 +49,7 @@ class TasksActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityTasksBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -57,7 +62,10 @@ class TasksActivity : AppCompatActivity() {
             bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
             bottomNav.menu.findItem(R.id.ic_task).setChecked(true)
 
-            categoryNameTV.text = intent.getStringExtra("catName")
+             holdCategory = intent.getSerializableExtra("catObject") as Category
+
+
+            categoryNameTV.text = holdCategory.categoryName
 
             //adapter setting
             recyclerAdapter = TaskAdapter(this@TasksActivity)
@@ -90,11 +98,11 @@ class TasksActivity : AppCompatActivity() {
 
         addBtn.setOnClickListener {
             if(titleET?.text.toString() != "" && descriptionET?.text.toString() != "") {
-                viewModel.addTask(titleET!!.text.toString(), descriptionET!!.text.toString(), "00:00", categoryN)
-                Toast.makeText(this@TasksActivity , "Task added successfully", Toast.LENGTH_LONG).show()
+                viewModel.addTask(titleET!!.text.toString(), descriptionET!!.text.toString(), holdTimer, categoryN)
+                Toast.makeText(this@TasksActivity , "Task added successfully", Toast.LENGTH_SHORT).show()
             }
             else
-                Toast.makeText(this@TasksActivity , "All fields requirement", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@TasksActivity , "All fields requirement", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
         dialog.show()
@@ -104,5 +112,26 @@ class TasksActivity : AppCompatActivity() {
     fun updateTime(id: Int, title: String, description: String, time: String, cateName: String){
         viewModel.editTask(id, title, description, time, cateName)
     }
+
+
+     fun startTimer(run: Boolean) {
+        var totalTime: Long? = null
+
+        if (run == true) {
+            binding.bigTimerTV.base = SystemClock.elapsedRealtime()
+            binding.bigTimerTV.start()
+
+
+        } else {
+            binding.bigTimerTV.stop()
+            totalTime = SystemClock.elapsedRealtime() - binding.bigTimerTV.base
+            totalTimee = totalTime + totalTimee
+            holdTimer = binding.bigTimerTV.text.toString()
+            val seconds = totalTimee / 1000 % 60
+            holdCategory.totalTime = seconds.toFloat()
+            viewModel.editCategory(holdCategory)
+        }
+    }
+
 
 }

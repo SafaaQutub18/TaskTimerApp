@@ -34,7 +34,7 @@ class CategoryActivity : AppCompatActivity() {
     lateinit var iconAdapter : IconAdapter
     lateinit var categoryAdapter : CategoryAdapter
     lateinit var viewModel: TaskViewModel
-    var holdTimer = ""
+
 
     private lateinit var barChart: BarChart
 
@@ -110,15 +110,15 @@ class CategoryActivity : AppCompatActivity() {
         val catNameET = dialog.findViewById(R.id.catNameET) as EditText
 
         addBtn.setOnClickListener {
-            viewModel.addCategory(catNameET.text.toString(), image)
+            viewModel.addCategory(catNameET.text.toString(), image,0f)
             dialog.dismiss()
         }
         dialog.show()
     }
 
-    fun goToTasksView(catName : String){
+    fun goToTasksView(catObject : Category){
         intent = Intent(applicationContext, TasksActivity::class.java)
-        intent.putExtra("catName", catName)
+        intent.putExtra("catObject", catObject)
         startActivity(intent)
     }
 
@@ -134,7 +134,6 @@ class CategoryActivity : AppCompatActivity() {
             //entries.add(BarEntry(i.toFloat(), categ.categoryTime.toFloat()))
             entries.add(BarEntry(i.toFloat(), 4.toFloat()))
         }
-
 
         val barDataSet = BarDataSet(entries, "Category")
         barDataSet.setColors(
@@ -190,7 +189,5 @@ class CategoryActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
+    
 }
