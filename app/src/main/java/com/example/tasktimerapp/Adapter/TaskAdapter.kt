@@ -100,11 +100,7 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
 
             }
-
-            //set background of item
-            taskLL.setBackgroundResource(backgroundList[counterBackground])
-            counterBackground++
-
+            
         }
     }
 
