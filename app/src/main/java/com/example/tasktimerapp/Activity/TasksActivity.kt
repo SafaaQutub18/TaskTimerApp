@@ -4,10 +4,10 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasktimerapp.Adapter.TaskAdapter
@@ -59,9 +59,7 @@ class TasksActivity : AppCompatActivity() {
             tasksRv.adapter = recyclerAdapter
             tasksRv.layoutManager = LinearLayoutManager(this@TasksActivity)
 
-
             startBtn.setOnClickListener { showAddTaskAlert() }
-
 
             val categName = binding.categoryNameTV.text.toString()
             viewModel = ViewModelProvider(this@TasksActivity).get(TaskViewModel::class.java)
@@ -87,8 +85,10 @@ class TasksActivity : AppCompatActivity() {
         addBtn.setOnClickListener {
             if(titleET?.text.toString() != "" && descriptionET?.text.toString() != "") {
                 viewModel.addTask(titleET!!.text.toString(), descriptionET!!.text.toString(), "00:00", categoryN)
+                Toast.makeText(this@TasksActivity , "Task added successfully", Toast.LENGTH_LONG).show()
             }
-            //else : toast message
+            else
+                Toast.makeText(this@TasksActivity , "All fields requirement", Toast.LENGTH_LONG).show()
             dialog.dismiss()
         }
         dialog.show()
