@@ -12,6 +12,7 @@ import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.os.SystemClock
 import android.view.View
+import androidx.core.view.isVisible
 import com.example.tasktimerapp.databinding.TaskRecyclerviewBinding
 
 class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
@@ -61,6 +62,27 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
             descriptionTV.text = task.taskDescription
 
 
+            startStopBtn.setOnClickListener {
+                if (runOrNot == 0) {
+                    activity.startTimer(true)
+                    runOrNot = 1
+                    startStopBtn.setBackgroundResource(R.drawable.stop_ic)
+
+                } else if (runOrNot == 1) {
+                    activity.startTimer(false)
+                    runOrNot = 0
+
+                    startStopBtn.setBackgroundResource(R.drawable.start_ic)
+                    startStopBtn.isVisible = false
+
+                    task.taskTime = activity.holdTimer
+                    itemTimerTV.text = task.taskTime
+                    itemTimerTV.text = "Time ${task.taskTime}"
+                    activity.viewModel.editTask(task.taskPK,task.taskTitle,task.taskDescription,activity.holdTimer,activity.binding.categoryNameTV.text.toString())
+
+
+                }
+            }
 
             taskCV.setOnClickListener {
 
@@ -68,38 +90,15 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
                     TransitionManager.beginDelayedTransition(taskCV, AutoTransition())
                     expandableLayout.visibility = View.VISIBLE
                     descriptionTV.text = task.taskDescription
+                    expandIV.setImageResource(R.drawable.expand_less_ic)
 
                 } else {
                     TransitionManager.beginDelayedTransition(taskCV, AutoTransition())
                     expandableLayout.visibility = View.GONE
+                    expandIV.setImageResource(R.drawable.expand_ic)
                 }
 
-                startStopBtn.setOnClickListener {
-                    if (runOrNot == 0) {
-                        activity.startTimer(true)
-                        runOrNot = 1
-                    } else if (runOrNot == 1) {
-                        activity.startTimer(false)
-                        runOrNot = 0
 
-
-                        task.taskTime = activity.holdTimer
-                        itemTimerTV.text = task.taskTime
-                        itemTimerTV.text = "Time ${task.taskTime}"
-                        activity.viewModel.editTask(task.taskPK,task.taskTitle,task.taskDescription,activity.holdTimer,activity.binding.categoryNameTV.text.toString())
-
-//                        val ttt = itemTimerTV.text.toString()
-//                        itemTimerTV.text = activity.binding.bigTimerTV.text.toString()
-//
-//                        activity.updateTime(position,
-//                            itemTaskTV.text.toString(),
-//                            descriptionTV.text.toString(),
-//                            itemTimerTV.text.toString(),
-//                            activity.binding.categoryNameTV.text.toString())
-                        notifyDataSetChanged()
-
-                    }
-                }
             }
 
             //set background of item

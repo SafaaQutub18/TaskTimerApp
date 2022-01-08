@@ -35,7 +35,6 @@ class CategoryActivity : AppCompatActivity() {
     lateinit var categoryAdapter : CategoryAdapter
     lateinit var viewModel: TaskViewModel
 
-
     private lateinit var barChart: BarChart
 
     private var categoryList : List<Category> = emptyList()
@@ -189,5 +188,5 @@ class CategoryActivity : AppCompatActivity() {
             }
         }
     }
-    
+
 }

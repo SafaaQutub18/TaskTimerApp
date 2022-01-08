@@ -24,7 +24,7 @@ class TasksActivity : AppCompatActivity() {
     lateinit var recyclerAdapter: TaskAdapter
     lateinit var viewModel: TaskViewModel
     lateinit var  holdCategory:Category
-    var holdTimer = ""
+    var holdTimer = "0"
     var totalTimee: Long = 0
 
     private val navigasjonen = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -97,8 +97,9 @@ class TasksActivity : AppCompatActivity() {
         val categoryN = binding.categoryNameTV.text.toString()
 
         addBtn.setOnClickListener {
+
             if(titleET?.text.toString() != "" && descriptionET?.text.toString() != "") {
-                viewModel.addTask(titleET!!.text.toString(), descriptionET!!.text.toString(), holdTimer, categoryN)
+                viewModel.addTask(titleET!!.text.toString(), descriptionET!!.text.toString(), " 00:00", categoryN)
                 Toast.makeText(this@TasksActivity , "Task added successfully", Toast.LENGTH_SHORT).show()
             }
             else
