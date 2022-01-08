@@ -16,6 +16,7 @@ import androidx.core.view.isVisible
 import com.example.tasktimerapp.databinding.TaskRecyclerviewBinding
 
 class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+    var oldHolder : TaskViewHolder?=null
     class TaskViewHolder(val binding: TaskRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -45,45 +46,46 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+
+
         val task = tasks[position]
         var runOrNot = 0
 
         if (counterBackground >= backgroundList.size)
             counterBackground = 0
+        if(oldHolder != null) {
+            oldHolder!!.binding.startStopBtn.setBackgroundResource(R.drawable.start_ic)
+        }
 
-        holder.binding.apply {
+            holder.binding.apply {
             //set background of item
             taskLL.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
-
-
             itemTaskTV.text = task.taskTitle
             itemTimerTV.text = "Time ${task.taskTime}"
             descriptionTV.text = task.taskDescription
-
-
             startStopBtn.setOnClickListener {
                 if (runOrNot == 0) {
                     activity.startTimer(true)
                     runOrNot = 1
                     startStopBtn.setBackgroundResource(R.drawable.stop_ic)
-
                 } else if (runOrNot == 1) {
+
                     activity.startTimer(false)
                     runOrNot = 0
-
-                    startStopBtn.setBackgroundResource(R.drawable.start_ic)
                     startStopBtn.isVisible = false
-
                     task.taskTime = activity.holdTimer
                     itemTimerTV.text = task.taskTime
                     itemTimerTV.text = "Time ${task.taskTime}"
-                    activity.viewModel.editTask(task.taskPK,task.taskTitle,task.taskDescription,activity.holdTimer,activity.binding.categoryNameTV.text.toString())
-
-
+                    activity.viewModel.editTask(
+                        task.taskPK,
+                        task.taskTitle,
+                        task.taskDescription,
+                        activity.holdTimer,
+                        activity.binding.categoryNameTV.text.toString()
+                    )
                 }
             }
-
             taskCV.setOnClickListener {
 
                 if (expandableLayout.visibility == View.GONE) {
@@ -100,11 +102,11 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
 
             }
-            
+                oldHolder = holder
+
         }
+
     }
-
-
     override fun getItemCount(): Int {
         return tasks.size
     }

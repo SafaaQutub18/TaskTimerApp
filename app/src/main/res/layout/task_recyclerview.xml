@@ -31,6 +31,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/start_stopBtn"
+                android:state_pressed="false"
                 android:layout_width="35dp"
                 android:layout_height="31dp"
                 android:layout_gravity="center"
