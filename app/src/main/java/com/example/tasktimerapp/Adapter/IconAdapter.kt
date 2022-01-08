@@ -2,6 +2,7 @@ package com.example.tasktimerapp.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimerapp.Activity.CategoryActivity
 import com.example.tasktimerapp.R
@@ -33,6 +34,8 @@ class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: IconViewHolder, position: Int) {
+
+        animation(holder)
         val icon = icons[position]
 
         holder.binding.apply {
@@ -47,6 +50,10 @@ class IconAdapter(private val activity: CategoryActivity): RecyclerView.Adapter<
 
     override fun getItemCount(): Int {
         return icons.size
+    }
+    private fun animation(holder: IconViewHolder) {
+        val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.rv_animation2)
+        holder.itemView.startAnimation(anim)
     }
 
 }

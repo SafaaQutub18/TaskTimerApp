@@ -5,6 +5,7 @@ import android.app.Activity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasktimerapp.Activity.CategoryActivity
 import com.example.tasktimerapp.R
@@ -47,10 +48,12 @@ class CategoryAdapter(private val activity: CategoryActivity): RecyclerView.Adap
         val currentCategory = categoryList[position]
 
         holder.binding.apply {
+            // item animation
+            animation(holder)
             //set background of item
             if (counterBackground == backgroundList.size)
                 counterBackground = 0
-            Log.d("vovo", "$counterBackground mmmmmmmmm ${backgroundList.size}")
+
             backgLayout.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
 
@@ -66,5 +69,10 @@ class CategoryAdapter(private val activity: CategoryActivity): RecyclerView.Adap
 
     override fun getItemCount(): Int {
         return categoryList.size
+    }
+
+    private fun animation(holder: CategoryViewHolder) {
+        val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.rv_animation)
+        holder.itemView.startAnimation(anim)
     }
 }

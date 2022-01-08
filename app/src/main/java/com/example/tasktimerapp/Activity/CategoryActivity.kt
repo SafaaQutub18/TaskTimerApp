@@ -3,6 +3,7 @@ package com.example.tasktimerapp.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -136,6 +137,7 @@ class CategoryActivity : AppCompatActivity() {
         barDataSet.setColors(Color.parseColor("#BAB0F7"),Color.parseColor("#95DEFF"),Color.parseColor("#FFBED6"), Color.parseColor("#E4A9FC"),Color.parseColor("#42CFF9"),)
         val data = BarData(barDataSet)
         barChart.data = data
+        barChart.setBackgroundResource(R.drawable.chart_backg)
 
         barChart.invalidate()
     }
@@ -158,7 +160,7 @@ class CategoryActivity : AppCompatActivity() {
         barChart.description.isEnabled = false
 
         //add animation
-        barChart.animateY(2000)
+        barChart.animateY(1300)
 
         // to draw label on xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM_INSIDE
