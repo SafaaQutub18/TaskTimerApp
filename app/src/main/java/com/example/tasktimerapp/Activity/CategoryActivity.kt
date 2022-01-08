@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
@@ -82,7 +83,6 @@ class CategoryActivity : AppCompatActivity() {
             categoryRv.adapter = categoryAdapter
             categoryRv.layoutManager = GridLayoutManager(this@CategoryActivity,2)
 
-
             drawChar()
         }
 
@@ -121,10 +121,10 @@ class CategoryActivity : AppCompatActivity() {
     private fun drawChar() {
         initBarChartUI()
 
-        //now draw bar chart with dynamic data
+        // draw bar chart with dynamic data
         val entries: ArrayList<BarEntry> = ArrayList()
 
-        //you can replace this data object with  your custom object
+        //fill y axis
         for (i in categoryList.indices) {
             val categ = categoryList[i]
             //entries.add(BarEntry(i.toFloat(), categ.categoryTime.toFloat()))
@@ -150,8 +150,9 @@ class CategoryActivity : AppCompatActivity() {
         //remove right y-axis
         barChart.axisRight.isEnabled = false
 
-        //remove legend
-        barChart.legend.isEnabled = false
+        // legend
+        barChart.legend.isEnabled = true
+        barChart.legend.textSize = 15f
 
         //remove description label
         barChart.description.isEnabled = false
@@ -165,6 +166,7 @@ class CategoryActivity : AppCompatActivity() {
         xAxis.setDrawLabels(true)
         xAxis.granularity = 1f
         xAxis.labelRotationAngle = +90f
+        xAxis.setTextSize(15f);
     }
 
     inner class MyAxisFormatter : IndexAxisValueFormatter() {

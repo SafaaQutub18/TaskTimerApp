@@ -69,7 +69,6 @@ class TasksActivity : AppCompatActivity() {
         }
     }
 
-
     private fun showAddTaskAlert(){
 
         val dialog = Dialog(this)
