@@ -72,7 +72,8 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
                     activity.startTimer(false)
                     runOrNot = 0
-                    startStopBtn.isVisible = false
+                    startStopBtn.setBackgroundResource(R.drawable.check_ic)
+                    startStopBtn.isEnabled = false
                     task.taskTime = activity.holdTimer
                     itemTimerTV.text = task.taskTime
                     itemTimerTV.text = "Time ${task.taskTime}"
@@ -103,20 +104,16 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
                     expandableLayout.visibility = View.GONE
                     expandIV.setImageResource(R.drawable.expand_ic)
                 }
-
-
             }
-
-
         }
-
     }
     override fun getItemCount(): Int {
         return tasks.size
     }
 
 fun stopPreTask(oldHolder: TaskViewHolder){
-        oldHolder.binding.startStopBtn.setBackgroundResource(R.drawable.expand_ic)
+        oldHolder.binding.startStopBtn.setBackgroundResource(R.drawable.check_ic)
+        oldHolder.binding.itemTimerTV.text = activity.binding.bigTimerTV.text.toString()
     }
 
 
