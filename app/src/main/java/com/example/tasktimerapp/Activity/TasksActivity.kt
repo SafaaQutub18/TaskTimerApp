@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
 import android.view.Window
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tasktimerapp.Adapter.IconAdapter
 import com.example.tasktimerapp.Adapter.TaskAdapter
 import com.example.tasktimerapp.R
 import com.example.tasktimerapp.TaskViewModel
@@ -109,12 +111,6 @@ class TasksActivity : AppCompatActivity() {
         dialog.show()
     }
 
-
-    fun updateTime(id: Int, title: String, description: String, time: String, cateName: String){
-        viewModel.editTask(id, title, description, time, cateName)
-    }
-
-
      fun startTimer(run: Boolean) {
         var totalTime: Long? = null
 
@@ -133,6 +129,9 @@ class TasksActivity : AppCompatActivity() {
             viewModel.editCategory(holdCategory)
         }
     }
+
+
+
 
 
 }

@@ -20,15 +20,12 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
     class TaskViewHolder(val binding: TaskRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-
-
     private var counterBackground = 0
     private var backgroundList: List<Int> =
         listOf(
-            R.drawable.light_blue_s,
-            R.drawable.pink_s,
-            R.drawable.purple_s,
-            R.drawable.dark_blue_s
+            R.drawable.light_blue_r,
+            R.drawable.pink_r,
+            R.drawable.purple_r
         )
 
 
@@ -53,22 +50,24 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
         if (counterBackground >= backgroundList.size)
             counterBackground = 0
-        if(oldHolder != null) {
-            oldHolder!!.binding.startStopBtn.setBackgroundResource(R.drawable.start_ic)
-        }
+
+
 
             holder.binding.apply {
             //set background of item
             taskLL.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
+
             itemTaskTV.text = task.taskTitle
             itemTimerTV.text = "Time ${task.taskTime}"
             descriptionTV.text = task.taskDescription
+
             startStopBtn.setOnClickListener {
-                if (runOrNot == 0) {
+                if (runOrNot == 0) { //time will run
                     activity.startTimer(true)
                     runOrNot = 1
                     startStopBtn.setBackgroundResource(R.drawable.stop_ic)
+
                 } else if (runOrNot == 1) {
 
                     activity.startTimer(false)
@@ -85,7 +84,12 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
                         activity.binding.categoryNameTV.text.toString()
                     )
                 }
+
+                if(oldHolder != null)
+                    stopPreTask(this@TaskAdapter.oldHolder!!)
+                oldHolder = holder
             }
+                //expand code
             taskCV.setOnClickListener {
 
                 if (expandableLayout.visibility == View.GONE) {
@@ -102,13 +106,17 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
 
             }
-                oldHolder = holder
+
 
         }
 
     }
     override fun getItemCount(): Int {
         return tasks.size
+    }
+
+fun stopPreTask(oldHolder: TaskViewHolder){
+        oldHolder.binding.startStopBtn.setBackgroundResource(R.drawable.expand_ic)
     }
 
 

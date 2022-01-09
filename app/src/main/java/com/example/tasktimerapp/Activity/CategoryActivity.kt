@@ -130,8 +130,7 @@ class CategoryActivity : AppCompatActivity() {
         //fill y axis
         for (i in categoryList.indices) {
             val categ = categoryList[i]
-            //entries.add(BarEntry(i.toFloat(), categ.categoryTime.toFloat()))
-            entries.add(BarEntry(i.toFloat(), 4.toFloat()))
+            entries.add(BarEntry(i.toFloat(), categ.totalTime))
         }
 
         val barDataSet = BarDataSet(entries, "Category")
