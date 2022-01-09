@@ -63,12 +63,21 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
             descriptionTV.text = task.taskDescription
 
             startStopBtn.setOnClickListener {
-                if (runOrNot == 0) { //time will run
+                if (runOrNot == 0) {
+                    if(oldHolder != null)
+                        stopPreTask(this@TaskAdapter.oldHolder!!)
+
+                    oldHolder = holder//time will run
                     activity.startTimer(true)
                     runOrNot = 1
                     startStopBtn.setBackgroundResource(R.drawable.stop_ic)
 
+
                 } else if (runOrNot == 1) {
+
+                    if(oldHolder != null)
+                        stopPreTask(this@TaskAdapter.oldHolder!!)
+                    oldHolder = holder
 
                     activity.startTimer(false)
                     runOrNot = 0
@@ -86,10 +95,9 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
                     )
                 }
 
-                if(oldHolder != null)
-                    stopPreTask(this@TaskAdapter.oldHolder!!)
-                oldHolder = holder
+
             }
+
                 //expand code
             taskCV.setOnClickListener {
 
