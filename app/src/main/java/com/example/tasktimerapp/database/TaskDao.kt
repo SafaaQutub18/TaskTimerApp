@@ -18,11 +18,8 @@ interface TaskDao {
     @Query("SELECT * FROM Categories WHERE categoryName = :categName")
     fun getCategoryWithTasks(categName: String): LiveData<List<CategoryTasksRelationship>>
 
-
-
     @Query("SELECT * FROM Categories")
     fun getCategories(): LiveData<List<Category>>
-
 
     @Update
     suspend fun updateCategory(category: Category)
@@ -30,9 +27,4 @@ interface TaskDao {
     @Update
     suspend fun updateTask(task: Task)
 
-//    @Delete
-//    suspend fun deleteCategory(category: Category)
-//
-//    @Delete
-//    suspend fun deleteTask(task: Task)
 }

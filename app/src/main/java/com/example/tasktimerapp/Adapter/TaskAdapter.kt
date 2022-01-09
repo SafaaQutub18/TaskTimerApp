@@ -1,7 +1,6 @@
 package com.example.tasktimerapp.Adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,13 +9,14 @@ import com.example.tasktimerapp.R
 import com.example.tasktimerapp.database.Task
 import android.transition.AutoTransition
 import android.transition.TransitionManager
-import android.os.SystemClock
 import android.view.View
-import androidx.core.view.isVisible
+import android.view.animation.AnimationUtils
 import com.example.tasktimerapp.databinding.TaskRecyclerviewBinding
 
-class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
-    var oldHolder : TaskViewHolder?=null
+class TaskAdapter(private val activity: TasksActivity) :
+    RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+    var oldHolder: TaskViewHolder? = null
+
     class TaskViewHolder(val binding: TaskRecyclerviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -27,7 +27,6 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
             R.drawable.pink_r,
             R.drawable.purple_r
         )
-
 
     private var tasks: List<Task> = emptyList()
 
@@ -43,17 +42,14 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-
-
+        animation(holder)
         val task = tasks[position]
         var runOrNot = 0
 
         if (counterBackground >= backgroundList.size)
             counterBackground = 0
 
-
-
-            holder.binding.apply {
+        holder.binding.apply {
             //set background of item
             taskLL.setBackgroundResource(backgroundList[counterBackground])
             counterBackground++
@@ -64,22 +60,23 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
 
             startStopBtn.setOnClickListener {
                 if (runOrNot == 0) {
-                    if(oldHolder != null)
+                    if (oldHolder != null)
                         stopPreTask(this@TaskAdapter.oldHolder!!)
 
                     oldHolder = holder//time will run
                     activity.startTimer(true)
                     runOrNot = 1
                     startStopBtn.setBackgroundResource(R.drawable.stop_ic)
-
+                    activity.binding.aboveTaskTV.text = task.taskTitle
 
                 } else if (runOrNot == 1) {
 
-                    if(oldHolder != null)
+                    if (oldHolder != null)
                         stopPreTask(this@TaskAdapter.oldHolder!!)
                     oldHolder = holder
 
                     activity.startTimer(false)
+                    activity.binding.aboveTaskTV.text = ""
                     runOrNot = 0
                     startStopBtn.setBackgroundResource(R.drawable.check_ic)
                     startStopBtn.isEnabled = false
@@ -94,11 +91,8 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
                         activity.binding.categoryNameTV.text.toString()
                     )
                 }
-
-
             }
-
-                //expand code
+            //expand code
             taskCV.setOnClickListener {
 
                 if (expandableLayout.visibility == View.GONE) {
@@ -115,21 +109,23 @@ class TaskAdapter(private val activity: TasksActivity): RecyclerView.Adapter<Tas
             }
         }
     }
+
     override fun getItemCount(): Int {
         return tasks.size
     }
 
-fun stopPreTask(oldHolder: TaskViewHolder){
+    fun stopPreTask(oldHolder: TaskViewHolder) {
         oldHolder.binding.startStopBtn.setBackgroundResource(R.drawable.check_ic)
         oldHolder.binding.itemTimerTV.text = activity.binding.bigTimerTV.text.toString()
     }
-
 
     fun displayTasks(userTasks: List<Task>) {
         this.tasks = userTasks
         notifyDataSetChanged()
     }
 
-
-
+    private fun animation(holder: TaskAdapter.TaskViewHolder) {
+        val anim = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.rv_animation)
+        holder.itemView.startAnimation(anim)
+    }
 }

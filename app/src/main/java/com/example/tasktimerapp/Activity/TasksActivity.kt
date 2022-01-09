@@ -25,7 +25,7 @@ class TasksActivity : AppCompatActivity() {
     lateinit var binding: ActivityTasksBinding
     lateinit var recyclerAdapter: TaskAdapter
     lateinit var viewModel: TaskViewModel
-    lateinit var  holdCategory:Category
+    lateinit var holdCategory: Category
     var holdTimer = "0"
     var totalTimee: Long = 0
 
@@ -57,14 +57,13 @@ class TasksActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
-        //binding.bottomNav.selectedItemId = R.id.
 
         binding.apply {
             //bottom navigation setting
             bottomNav.setOnNavigationItemSelectedListener(navigasjonen)
             bottomNav.menu.findItem(R.id.ic_task).setChecked(true)
 
-             holdCategory = intent.getSerializableExtra("catObject") as Category
+            holdCategory = intent.getSerializableExtra("catObject") as Category
 
 
             categoryNameTV.text = holdCategory.categoryName
@@ -82,11 +81,9 @@ class TasksActivity : AppCompatActivity() {
                 recyclerAdapter.displayTasks(tasks[0].tasks)
             })
         }
-
     }
 
-
-    private fun showAddTaskAlert(){
+    private fun showAddTaskAlert() {
 
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -100,25 +97,29 @@ class TasksActivity : AppCompatActivity() {
 
         addBtn.setOnClickListener {
 
-            if(titleET?.text.toString() != "" && descriptionET?.text.toString() != "") {
-                viewModel.addTask(titleET!!.text.toString(), descriptionET!!.text.toString(), " 00:00", categoryN)
-                Toast.makeText(this@TasksActivity , "Task added successfully", Toast.LENGTH_SHORT).show()
-            }
-            else
-                Toast.makeText(this@TasksActivity , "All fields requirement", Toast.LENGTH_SHORT).show()
+            if (titleET?.text.toString() != "" && descriptionET?.text.toString() != "") {
+                viewModel.addTask(
+                    titleET!!.text.toString(),
+                    descriptionET!!.text.toString(),
+                    " 00:00",
+                    categoryN
+                )
+                Toast.makeText(this@TasksActivity, "Task added successfully", Toast.LENGTH_SHORT)
+                    .show()
+            } else
+                Toast.makeText(this@TasksActivity, "All fields requirement", Toast.LENGTH_SHORT)
+                    .show()
             dialog.dismiss()
         }
         dialog.show()
     }
 
-     fun startTimer(run: Boolean) {
+    fun startTimer(run: Boolean) {
         var totalTime: Long? = null
 
         if (run == true) {
             binding.bigTimerTV.base = SystemClock.elapsedRealtime()
             binding.bigTimerTV.start()
-
-
         } else {
             binding.bigTimerTV.stop()
             totalTime = SystemClock.elapsedRealtime() - binding.bigTimerTV.base
@@ -129,9 +130,4 @@ class TasksActivity : AppCompatActivity() {
             viewModel.editCategory(holdCategory)
         }
     }
-
-
-
-
-
 }
